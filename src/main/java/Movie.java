@@ -4,20 +4,14 @@ public class Movie {
 
     double imdbRating;
 
-    //constructor with no arguments
     public Movie() {
+    }
 
-      }
-
-      //constructor with arguments
     public Movie(String name, int durationInMinutes, double imdbRating) {
         this.name = name;
         this.durationInMinutes = durationInMinutes;
         this.imdbRating = imdbRating;
     }
-
-    //setters and getters
-
 
     public String getName() {
         return name;
