@@ -1,11 +1,10 @@
 public class Director {
-    private String name;
-    private int numberOfMovies;
+      String name;
+      int numberOfMovies;
 
-    private double imdbRating;
+      double imdbRating;
 
-    public Director() {
-    }
+     
 
     public Director(String name, int numberOfMovies, double imdbRating) {
         this.name = name;

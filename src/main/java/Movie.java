@@ -1,8 +1,8 @@
 public class Movie {
-   private String name;
-    private int durationInMinutes;
+    String name;
+    int durationInMinutes;
 
-   private double imdbRating;
+    double imdbRating;
 
     //constructor with no arguments
     public Movie() {
