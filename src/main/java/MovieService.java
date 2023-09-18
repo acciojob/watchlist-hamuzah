@@ -1,10 +1,12 @@
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class MovieService {
-    MovieRepository movieRepository= new MovieRepository();
+    @Autowired
+    MovieRepository movieRepository;
     public String addMovie(Movie movie){
         String answer=movieRepository.addMovie(movie);
         return answer;
