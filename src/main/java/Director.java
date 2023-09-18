@@ -1,10 +1,10 @@
 public class Director {
 
-    String name;
+    private String name;
 
-    int numberOfMovies;
+    private int numberOfMovies;
 
-    double imdbRating;
+    private double imdbRating;
 
     public String getName() {
         return name;

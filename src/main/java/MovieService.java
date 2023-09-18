@@ -1,47 +1,58 @@
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MovieService {
-    @Autowired
-    MovieRepository movieRepository;
-
-    public void addMovie(Movie movie) {
-        movieRepository.addMovie(movie);
+    MovieRepository movieRepository= new MovieRepository();
+    public String addMovie(Movie movie){
+        String answer=movieRepository.addMovie(movie);
+        return answer;
+    }
+    public String addDirector(Director director){
+        String answer=movieRepository.addDirector(director);
+        return answer;
+    }
+    public Optional<Movie> getMovieByName(String name){
+        List<Movie> listMovies=movieRepository.getAllMovies();
+        for(Movie movie:listMovies){
+            if(name.equals(movie.getName())){
+                return Optional.of(movie);
+            }
+        }
+        return Optional.empty();
+    }
+    public Optional<Director> getDirectorByName(String name){
+        List<Director> listDirectors=movieRepository.getAllDirectors();
+        for(Director director:listDirectors){
+            if(name.equals(director.getName())){
+                return Optional.of(director);
+            }
+        }
+        return Optional.empty();
+    }
+    public List<String> findAllMovies(){
+        List<String> movieList= movieRepository.findAllMovies();
+        return movieList;
     }
 
-    public void addDirector(Director director) {
-        movieRepository.addDirector(director);
+    public List<String> getMoviesByDirectorName(String name) {
+        List<String> movieList= movieRepository.getMoviesByDirectorName(name);
+        return movieList;
     }
 
-    public void pairMovieDirector(String movieName, String directorName) {
-        movieRepository.pairMovieDirector(movieName, directorName);
+    public String addMovieDirectorPair(String movieName, String directorName) {
+        String answer= movieRepository.addMovieDirectorPair(movieName,directorName);
+        Optional<Director> op=getDirectorByName(directorName);
+        op.get().setNumberOfMovies(op.get().getNumberOfMovies()+1);
+        return answer;
     }
 
-    public Movie getMovieByName(String movieName) {
-        Movie movie = movieRepository.getMovieByName(movieName);
-        return movie;
+    public String deleteDirectorByName(String name) {
+        return movieRepository.deleteDirectorByName(name);
     }
 
-    public Director getDirectorByName(String directorName) {
-        return movieRepository.getDirectorByName(directorName);
-    }
-
-    public List<String> getMoviesByDirectorName(String directorName) {
-        return movieRepository.getMovieByDirectorName(directorName);
-    }
-
-    public List<String> findAllMovies() {
-        return movieRepository.findAllMovies();
-    }
-
-    public void deleteDirectorAndMoviesByName(String directorName) {
-        movieRepository.deleteDirectorAndMoviesByName(directorName);
-    }
-
-    public void deleteAllDirectors() {
-        movieRepository.deleteAllDirectors();
+    public String deleteAllDirectors() {
+        return movieRepository.deleteAllDirectors();
     }
 }
